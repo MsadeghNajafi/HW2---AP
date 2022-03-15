@@ -48,6 +48,7 @@ std::shared_ptr<Client> Server:: get_client(std::string id) const
   }
   if (flag==0)
    return nullptr;
+  return 0;
    
  }
 bool Server:: parse_trx(std::string trx, std::string& sender, std::string& receiver, double& value) 
@@ -91,6 +92,7 @@ bool Server::add_pending_trx(std::string trx, std::string signature) const
    x=crypto::verifySignature((*point).get_publickey(),trx,(*point).sign(trx));
    if(std::stoi(trx3)<= (*point).get_wallet() && x==true)
          pending_trxs.push_back(trx);
+   return 1;
  }
 
 size_t Server::mine()
@@ -143,8 +145,9 @@ size_t Server::mine()
          }
 
       }
+    
   }
-  
+  return 1;
  }
 double Server::get_wallet(std::string id) const
  {
@@ -153,6 +156,7 @@ double Server::get_wallet(std::string id) const
       if(client.first->get_id()==id)
          return client.second;
     }
+    return 1;
  }
 void   show_wallets(const  Server& server)
  {

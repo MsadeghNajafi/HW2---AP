@@ -99,12 +99,7 @@ size_t Server::mine()
     
     std::string nonce{};
     std::string hash{};
-    int cnt{0};
-    int cnt0{0};
-   /*for(auto trans :pending_trxs)
-    {
-      mempool+=trans;
-    } */
+ 
  while(hash.substr(0, 10).find("000") )
  {
   
@@ -117,7 +112,7 @@ size_t Server::mine()
      mempool+=nonce;
      hash=crypto::sha256(mempool);
      if(hash.substr(0, 10).find("000") != std::string::npos)
-         //if(cnt0==3)
+         
          {
 
          
